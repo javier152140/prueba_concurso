@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Reservas | Aventura Sella</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <a href="index.html" class="logo-container">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#48CAE4;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="25" width="15" height="50" fill="url(#grad1)" transform="rotate(-15 17.5 50)" />
+                    <rect x="35" y="15" width="15" height="70" fill="url(#grad1)" />
+                    <rect x="60" y="25" width="15" height="50" fill="url(#grad1)" transform="rotate(15 67.5 50)" />
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="5" />
+                </svg>
+            </div>
+            <div class="logo-text">Aventura Sella</div>
+        </a>
+        <nav class="main-menu" id="mainMenu">
+            <a href="index.html" class="menu-item">Inicio</a>
+            <a href="descenso.html" class="menu-item">El Descenso</a>
+            <a href="actividades.html" class="menu-item">Actividades Asturias</a>
+            <a href="contacto.html" class="menu-item active">Reserva / Contacto</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <section class="section" id="contact-page">
+        <div class="container contact-content">
+            <h2 class="section-title">Planifica tu Aventura / Contáctanos</h2>
+
+            <div class="contact-info-wrapper">
+                <div class="contact-text">
+                    <h4>Información Clave</h4>
+                    <p>Contacta con nuestro equipo para resolver dudas, personalizar tu reserva o pedir información sobre grupos grandes.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Base de Operaciones</h4>
+                                <p>C/ Río Sella, 12, 33540 Arriondas, Asturias</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>reservas@aventurasella.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.74 21 3 13.26 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Teléfono</h4>
+                                <p>+34 985 000 000 (Horario 9h-18h)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4>Síguenos</h4>
+                        <div class="social-buttons">
+                            </div>
+                    </div>
+                </div>
+
+                <form action="#" method="POST" class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email de Contacto</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity">Actividad de Interés</label>
+                        <input type="text" id="activity" name="activity" placeholder="Ej: Descenso Sella o Barranquismo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="participants">Nº de Participantes</label>
+                        <input type="number" id="participants" name="participants" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha Preferida</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje / Comentarios Adicionales (Ej: Edad de niños, hora aproximada)</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Solicitar Información y Reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2025 Aventura Sella. Todos los derechos reservados.
+            </div>
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos del Servicio</a>
+            </div>
+        </div>
+    </footer>
+    
+<script src="script.js"></script>
+<script>
+    // Script local para marcar el menú activo
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.menu-item.active')?.classList.remove('active');
+        document.querySelector('a[href="contacto.html"]')?.classList.add('active');
+    });
+</script>
+</body>
+</html>
