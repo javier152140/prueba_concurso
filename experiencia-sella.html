@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Experiencia Sella | Aventura Sella</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <header class="header" id="header">
+        <a href="index.html" class="logo-container">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00B4D8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#48CAE4;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="25" width="15" height="50" fill="url(#grad1)" transform="rotate(-15 17.5 50)" />
+                    <rect x="35" y="15" width="15" height="70" fill="url(#grad1)" />
+                    <rect x="60" y="25" width="15" height="50" fill="url(#grad1)" transform="rotate(15 67.5 50)" />
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="5" />
+                </svg>
+            </div>
+            <div class="logo-text">Aventura Sella</div>
+        </a>
+        <nav class="main-menu" id="mainMenu">
+            <a href="index.html" class="menu-item">Inicio</a>
+            <a href="nuestra-esencia.html" class="menu-item">Nuestra Esencia</a>
+            <a href="experiencia-sella.html" class="menu-item active">La Experiencia Sella</a>
+            <a href="ventajas.html" class="menu-item">Ventajas Únicas</a>
+            <a href="contacto.html" class="menu-item">Reserva / Contacto</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main id="app-container">
+
+        <section class="section" id="river-features">
+            <div class="container river-container">
+                <h2 class="section-title scroll-reveal fade-in-up">La Experiencia Sella: Un Recorrido Paso a Paso</h2>
+                
+                <div class="river-timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot scroll-reveal zoom-in" data-delay="0.1">1</div>
+                        <div class="timeline-content scroll-reveal flip-horizontal" data-delay="0.2">
+                            <h3>Llegada y Calidez en la Base</h3>
+                            <p>Te recibimos en Arriondas, nuestra base local. Vestuarios climatizados y parking propio, seguido de un briefing auténtico sobre el río y tu equipo homologado.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right-aligned">
+                        <div class="timeline-dot scroll-reveal zoom-in" data-delay="0.3">2</div>
+                        <div class="timeline-content scroll-reveal flip-horizontal" data-delay="0.4">
+                            <h3>El Abrazo del Agua (Tramos a Elegir)</h3>
+                            <p>El Descenso comienza cuando tú quieras. Decide entre la ruta de 7km (perfecta para un primer contacto) o la ruta de 15km, sintiendo la corriente y disfrutando de la fauna local.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot scroll-reveal zoom-in" data-delay="0.5">3</div>
+                        <div class="timeline-content scroll-reveal flip-horizontal" data-delay="0.6">
+                            <h3>Pausa de Recarga Natural</h3>
+                            <p>En el punto intermedio, una parada para degustar tu picnic o simplemente tumbarte en la playa fluvial. Es el momento de escuchar el río y recargar energías.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right-aligned">
+                        <div class="timeline-dot scroll-reveal zoom-in" data-delay="0.7">4</div>
+                        <div class="timeline-content scroll-reveal flip-horizontal" data-delay="0.8">
+                            <h3>Regreso sin Estrés</h3>
+                            <p>Al finalizar, nuestro transporte te estará esperando. Vuelve a la base para una ducha caliente y un café. Nos aseguramos de que tu día acabe tan bien como empezó.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-banner" id="secondary-cta">
+            <div class="container cta-content scroll-reveal zoom-in">
+                <h2>¡Tu Desconexión de Fin de Semana te Espera!</h2>
+                <p>Asturias es el paraíso verde: canoas, montaña, barrancos... ¿Empezamos a planificar?</p>
+                <a href="contacto.html" class="cta-button secondary-cta-btn">¡Solicitar Presupuesto Personalizado!</a>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2025 Aventura Sella. Todos los derechos reservados. | Operado desde Arriondas, Asturias.
+            </div>
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos del Servicio</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top" id="scrollToTop">
+        <span>↑</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

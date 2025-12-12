@@ -623,3 +623,942 @@ Paleta: Azul/Celeste (#00B4D8, #48CAE4)
                 font-size: 1.4em;
             }
         }
+        /* =======================================
+   1. GLOBAL & RESET
+   ======================================= */
+/* =======================================
+   1. GLOBAL & RESET
+   ======================================= */
+:root {
+    /* Paleta de colores */
+    --color-primary: #00B4D8; /* Azul claro/Turquesa (Highlight) */
+    --color-secondary: #03045E; /* Azul Marino Oscuro (Fondo Principal) */
+    --color-background-dark: #000000;
+    --color-card-dark: #121212;
+    --color-text-light: #F8F8FF; /* Blanco suave */
+    --color-text-muted: #B0C4DE; /* Azul grisáceo */
+    --color-success: #4CAF50; /* Verde para indicar selección */
+    
+    /* Tipografía */
+    --font-primary: 'Montserrat', sans-serif;
+    --spacing-unit: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #48CAE4; /* Un tono más claro que primary */
+}
+
+/* Reutilizable */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-unit);
+}
+
+.section {
+    padding: 80px 0;
+    min-height: 80vh;
+}
+
+/* -------------------------------------------
+   AQUÍ LA REGLA CLAVE PARA OCULTAR LAS ETAPAS
+   ------------------------------------------- */
+.stage.hidden {
+    display: none !important; 
+}
+/* ------------------------------------------- */
+
+
+.section-title {
+    font-size: 2.5em;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--color-text-light);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--color-primary);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* =======================================
+   2. HEADER & NAVIGATION
+   ======================================= */
+.header {
+    background-color: var(--color-secondary);
+    padding: 15px var(--spacing-unit);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-light);
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo svg {
+    display: block;
+}
+
+.main-menu .menu-item {
+    color: var(--color-text-light);
+    margin-left: var(--spacing-unit);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+}
+
+.main-menu .menu-item::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.main-menu .menu-item:hover::after,
+.main-menu .menu-item.active::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none; /* Oculto en escritorio */
+}
+
+/* =======================================
+   3. HOME SECTION
+   ======================================= */
+#app-container {
+    padding: 0; 
+}
+
+#selection-stage {
+    text-align: center;
+    padding: 80px 0;
+}
+
+#selection-stage h1 {
+    font-size: 3.5em;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--color-text-light);
+}
+
+#selection-stage .subtitle {
+    font-size: 1.2em;
+    color: var(--color-text-muted);
+    margin-bottom: 50px;
+}
+
+/* =======================================
+   4. ACTIVITIES GRID
+   ======================================= */
+.activities-grid {
+ display: grid; 
+    
+    /* Esta línea es la CLAVE: crea 3 columnas con ancho igual (1fr) */
+    grid-template-columns: repeat(3, 1fr); 
+    
+    gap: 30px; /* Espacio entre las tarjetas */
+    
+    /* Importante para que las 3 columnas tengan espacio para aparecer */
+    width: 90%; 
+    max-width: 1200px; /* Asegura un ancho máximo generoso */
+    margin: 30px auto; /* Centra el grid */
+} /* <-- Solo UNA llave de cierre para .activities-grid */
+
+
+/* --- REGLAS DE RESPONSIVIDAD (Media Queries) --- */
+
+/* Para pantallas medianas (tabletas grandes, por ejemplo) */
+@media (max-width: 1024px) {
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+        gap: 25px;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .activities-grid {
+        /* En móviles, solo 1 columna */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+
+.activity-card {
+    background-color: var(--color-card-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: var(--spacing-unit);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+
+/* Cambiar el botón dentro de la tarjeta seleccionada */
+.activity-card.selected .add-to-cart-btn {
+    background: var(--color-success);
+    color: var(--color-background-dark);
+    border: 2px solid var(--color-success);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+/* Imágenes de las cards (Ajustar rutas de imagen) */
+.card-image.sella {
+    background-image: url('images/sella.jpg'); 
+    background-color: #00B4D8;
+}
+.card-image.picos {
+    background-image: url('images/picos.jpg'); 
+    background-color: #4CAF50;
+}
+.card-image.rafting {
+    background-image: url('images/rafting.jpg'); 
+    background-color: #FF6B6B;
+}
+
+
+.activity-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.activity-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+/* Botones */
+.add-to-cart-btn, .main-action-btn, .secondary-action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho de la tarjeta */
+}
+
+/* Estilo por defecto (Seleccionar Actividad) */
+.add-to-cart-btn {
+    background: linear-gradient(90deg, #00B4D8 0%, #48CAE4 100%);
+    color: var(--color-background-dark);
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+}
+
+.add-to-cart-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.6);
+}
+
+/* Estilo cuando la actividad ya está seleccionada (.selected) */
+.add-to-cart-btn.selected {
+    background: var(--color-success); /* Color verde */
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.6);
+    color: var(--color-background-dark);
+    font-weight: 900;
+    /* Para que el usuario note el cambio */
+    border: 2px solid var(--color-success); 
+}
+
+.add-to-cart-btn.selected:hover {
+    background: #5CB85C; 
+}
+
+
+.main-action-btn {
+    background: linear-gradient(90deg, #00B4D8 0%, #48CAE4 100%);
+    color: var(--color-background-dark);
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+}
+
+.main-action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.6);
+}
+
+.secondary-action-btn {
+    background-color: transparent;
+    border: 2px solid var(--color-text-muted);
+    color: var(--color-text-muted);
+    margin-top: 10px;
+}
+
+.secondary-action-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.main-action-btn.reserve-btn:disabled {
+    background: #444;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+/* =======================================
+   5. CART STAGE
+   ======================================= */
+#cart-stage {
+    padding: 80px 0;
+    min-height: 80vh;
+}
+
+#cart-stage h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-text-light);
+}
+
+.cart-content {
+    display: flex;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cart-items {
+    flex-grow: 1;
+    min-height: 200px;
+}
+
+#empty-cart-message {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 50px 0;
+    border: 1px dashed var(--color-text-muted);
+    border-radius: 8px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-card-dark);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.item-info h4 {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.item-info p {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls button {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.quantity-controls span {
+    margin: 0 10px;
+    font-weight: 700;
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--color-text-light);
+    width: 80px;
+    text-align: right;
+}
+
+.remove-btn {
+    background: transparent;
+    color: #ff6b6b;
+    border: none;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 1.2em;
+    transition: color 0.2s ease;
+}
+
+.remove-btn:hover {
+    color: #ff3838;
+}
+
+/* Cart Summary */
+.cart-summary {
+    width: 300px;
+    background-color: var(--color-card-dark);
+    padding: var(--spacing-unit);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    height: fit-content;
+}
+
+.cart-summary h3 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.summary-line.total {
+    font-size: 1.2em;
+    font-weight: 900;
+    color: var(--color-primary);
+}
+
+.cart-summary hr {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 15px 0;
+}
+
+.cart-summary .main-action-btn,
+.cart-summary .secondary-action-btn {
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* =======================================
+   6. CONFIRMATION STAGE
+   ======================================= */
+#confirmation-stage {
+    padding: 80px 0;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmation-box {
+    background-color: var(--color-card-dark);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.success-icon {
+    font-size: 4em;
+    color: var(--color-success);
+    margin-bottom: 20px;
+}
+
+.confirmation-box h2 {
+    color: var(--color-primary);
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.ref-text {
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-top: 10px;
+}
+
+/* =======================================
+   7. FOOTER & UTILITIES
+   ======================================= */
+.footer {
+    background-color: var(--color-secondary);
+    padding: var(--spacing-unit) 0;
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+    text-align: center;
+    border-top: 1px solid #1a1a1a;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-unit);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links a {
+    color: var(--color-text-muted);
+    margin-left: 20px;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: var(--spacing-unit);
+    right: var(--spacing-unit);
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    display: none; /* Controlado por JS */
+    transition: background-color 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    background-color: #48CAE4;
+}
+
+/* =======================================
+   8. RESPONSIVENESS & MEDIA QUERIES
+   ======================================= */
+/* Tablets (max-width 992px) */
+@media (max-width: 992px) {
+    .cart-content {
+        flex-direction: column;
+        gap: var(--spacing-unit);
+    }
+
+    .cart-summary {
+        width: 100%;
+    }
+}
+
+/* Móviles (max-width 768px) */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px var(--spacing-unit);
+    }
+    
+    .main-menu {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px; 
+        left: 0;
+        width: 100%;
+        background-color: var(--color-secondary);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        padding: 10px 0;
+    }
+
+    .main-menu.open {
+        display: flex;
+    }
+
+    .main-menu .menu-item {
+        margin: 0;
+        padding: 10px 20px;
+        border-bottom: 1px solid #1a1a1a;
+    }
+
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    #selection-stage h1 {
+        font-size: 2.5em;
+    }
+
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 40px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-links {
+        margin-top: 10px;
+    }
+    
+    .footer-links a {
+        margin: 0 10px;
+    }
+}
+/* -------------------------------------------
+   AJUSTES PARA FORMULARIO DE RESERVA (CONTACTO.HTML)
+   ------------------------------------------- */
+
+/* Estructura principal de 2 columnas */
+.cart-content {
+    /* Mantener el display flex y gap ya definidos */
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start; /* Para que las columnas empiecen arriba */
+}
+
+/* Contenedor del Formulario (Columna izquierda) */
+.cart-details-form {
+    flex-grow: 1;
+    min-width: 450px; /* Ancho mínimo para la columna del formulario */
+}
+
+.form-section {
+    background-color: var(--color-card-dark);
+    padding: var(--spacing-unit);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-section h3 {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    font-size: 0.95em;
+}
+
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    font-family: var(--font-primary);
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* Sobrescribir estilos del carrito en la columna de detalles */
+.cart-details-form .cart-items {
+    /* Ajusta el estilo de la lista de ítems dentro del formulario */
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    min-height: 0;
+}
+
+.cart-details-form .cart-item {
+    padding: 10px;
+    /* Estilo más compacto para la lista dentro del formulario */
+    font-size: 0.9em;
+}
+
+
+/* Adaptación para móviles: las columnas se apilan */
+@media (max-width: 992px) {
+    .cart-content {
+        flex-direction: column;
+        gap: var(--spacing-unit);
+    }
+
+    .cart-details-form {
+        min-width: unset;
+        width: 100%;
+    }
+}
+/* Nuevo Efecto: Zoom In Rápido */
+.zoom-in-delay {
+    opacity: 0;
+    transform: scale(0.8); /* Empieza pequeño (80% del tamaño) */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transición rápida */
+}
+
+.zoom-in-delay.visible {
+    opacity: 1;
+    transform: scale(1); /* Vuelve a su tamaño normal */
+}
+
+/* Aplicación de Retrasos: Importante para el efecto secuencial */
+.activities-grid .activity-card:nth-child(1).zoom-in-delay {
+    transition-delay: 0.1s;
+}
+.activities-grid .activity-card:nth-child(2).zoom-in-delay {
+    transition-delay: 0.2s;
+}
+.activities-grid .activity-card:nth-child(3).zoom-in-delay {
+    transition-delay: 0.3s;
+}
+.activities-grid .activity-card:nth-child(4).zoom-in-delay {
+    transition-delay: 0.4s;
+}
+.activities-grid .activity-card:nth-child(5).zoom-in-delay {
+    transition-delay: 0.5s;
+}
+.activities-grid .activity-card:nth-child(6).zoom-in-delay {
+    transition-delay: 0.6s;
+}
+/* -----------------------------------
+   TARJETA DE DESCRIPCIÓN (AHORA USANDO LA CLASE .tarjetas)
+   ----------------------------------- */
+/* -----------------------------------------------------
+   TARJETA DE DESCRIPCIÓN (CLASE .tarjetas) - CÓDIGO FINAL Y PROFESIONAL
+   ----------------------------------------------------- */
+
+/* --- 2.1. Estilo y Layout de la Tarjeta --- */
+/* -----------------------------------------------------
+   TARJETA DE DESCRIPCIÓN (CLASE .tarjetas) - CÓDIGO CON ANCHO MODIFICADO
+   ----------------------------------------------------- */
+.tarjetas { 
+    background-color: var(--color-card-dark); 
+    
+    /* Layout y tamaño: ¡ESTE ES EL CAMBIO! */
+    max-width: 650px; /* AHORA MÁS ANCHA */
+    margin: 40px auto 60px auto;
+    padding: calc(var(--spacing-unit) * 1.5); 
+    border-radius: 12px;
+    text-align: center;
+    
+    /* Efectos de Sombra y Borde */
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 180, 216, 0.4); 
+    border-top: 5px solid var(--color-primary); 
+    
+    /* Transiciones profesionales para el efecto Hover */
+    transition: 
+        transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+        box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.3s ease-in-out; 
+
+    /* Estado inicial para el 'scroll-reveal' */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Resto de estilos del Hover y Tipografía permanecen igual */
+.tarjetas:hover {
+    transform: translateY(-8px) scale(1.01); 
+    background-color: #1a2a3a; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px var(--color-primary); 
+}
+
+/* ... (resto de .tarjetas h2, p, strong, etc., sin cambios) ... */
+/* --- ESTILO PARA TEXTO FUERTE (Picos de Europa, Río Sella) --- */
+
+.tarjetas strong {
+    color: var(--color-primary); /* Color Turquesa para que destaque */
+    font-weight: 900; /* Extra-negrita */
+    /* Añadimos un sutil resplandor para el efecto profesional */
+    text-shadow: 0 0 5px rgba(0, 180, 216, 0.5); 
+}
+
+
+/* --- ESTILO PARA EL RESALTADO ESPECÍFICO (Descenso del Sella) --- */
+
+.tarjetas .highlight-sella {
+    color: var(--color-text-light); /* El color del texto es blanco */
+    font-weight: 700;
+    font-style: italic;
+    padding: 3px 8px;
+    
+    /* Efecto de 'caja' de luz alrededor del texto */
+    background-color: rgba(0, 180, 216, 0.1); /* Fondo muy sutil y transparente */
+    border-radius: 5px;
+    
+    /* Subrayado/Borde simulado con caja de luz */
+    border: 1px solid rgba(0, 180, 216, 0.5); 
+}
+/* -----------------------------------------------------
+   ESTRUCTURA HERO DE DOS COLUMNAS (TARJETA + IMAGEN)
+   ----------------------------------------------------- */
+
+/* 1. Contenedor Principal (Para centrar los elementos) */
+#selection-stage {
+    /* Usamos Flexbox para organizar el contenido en una fila */
+    display: flex;
+    justify-content: center; /* Centrar el contenido horizontalmente */
+    align-items: flex-start; /* Alinear el contenido arriba (importante para el título) */
+    flex-direction: column; /* Empezamos con columna para que el título vaya arriba */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* 2. Contenedor del Título y Subtítulo (Para que sigan centrados) */
+#selection-stage h1, #selection-stage .subtitle {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px; /* Limitar el ancho de los textos superiores */
+}
+
+/* 3. Contenedor Flexible para la Tarjeta y la Imagen */
+.hero-content-flex {
+    display: flex;
+    justify-content: space-between; /* Espaciar las dos columnas */
+    align-items: center; /* Centrar verticalmente tarjeta e imagen */
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo del área de contenido */
+    margin: 40px auto 60px auto; /* Centrar el bloque */
+    padding: 0 40px; /* Padding interno */
+}
+
+/* 4. Estilo de la Tarjeta (Ajustar margen y ancho) */
+.tarjetas {
+    /* Hereda todos los estilos profesionales de antes */
+    max-width: 550px; /* Ajustamos el ancho para que quepa en la columna */
+    margin: 0; /* Eliminamos el margen auto vertical para que Flexbox funcione */
+    flex-shrink: 0; /* Evita que la tarjeta se encoja */
+}
+
+/* 5. Contenedor para la Imagen (Columna Derecha) */
+.hero-image-container {
+    width: 100%;
+    max-width: 500px; /* Ancho de la imagen/columna derecha */
+    height: 400px; /* Altura de la imagen */
+    margin-left: 50px;
+    background-color: #03045E; /* Fondo para visualizar la columna */
+    border-radius: 15px;
+    
+    /* Imagen Placeholder (Reemplaza la URL por la tuya) */
+    background-image: url('paisaje-asturias.png'); 
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    opacity: 0; /* Oculto inicialmente para animación */
+    transform: translateX(30px); /* Ligeramente desplazado para animación */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hero-image-container.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
+.activities-grid {
+    display: grid !important; /* Fuerza la rejilla sobre cualquier otro display */
+    grid-template-columns: repeat(3, 1fr) !important; /* Fuerza las 3 columnas */
+    gap: 30px; 
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 30px auto; 
+}
